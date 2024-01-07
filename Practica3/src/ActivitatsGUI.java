@@ -52,16 +52,15 @@ public class ActivitatsGUI extends JFrame {
         mainPanel.add(inputPanel);
 
         JPanel daysPanel = new JPanel(new GridLayout(2, 5));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         for (int i = 0; i < 10; i++) {
             LocalDate day = fechaInicial.plusDays(i);
-            JButton dayButton = new JButton(day.format(formatter));
+            JButton dayButton = new JButton(String.valueOf(day.getDayOfMonth())); // Cambiado para mostrar solo el día
             dayButton.addActionListener(e -> mostrarActividadesDia(day));
             daysPanel.add(dayButton);
             botonesDias.put(day.getDayOfMonth(), dayButton);
         }
         mainPanel.add(daysPanel);
-
+        
         JPanel filterPanel = new JPanel(new GridLayout(1, 3));
         String[] tipos = {"Tipo1", "Tipo2", "Tipo3"};
         for (String tipo : tipos) {
